@@ -36,4 +36,20 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
+    username = forms.CharField(
+        max_length=20,
+        required=True,
+        widget=forms.TextInput(attrs={
+            "class": "form-control", 
+            "placeholder": "id를 입력해주세요."
+            }),
+    )
+    password = forms.CharField(
+        max_length=30,
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            "class": "form-control", 
+            "placeholder": "password를 입력해주세요."
+            }),
+    )
     # TODO: 2. login 할 때 form을 활용해주세요

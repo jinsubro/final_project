@@ -1,11 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
 {% comment %} TODO: 5. base.html 템플릿을 만들어 모든 페이지에서 상속받아 보여주세요 {% endcomment %}
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-
-<body>
   <div class="container">
       
 <div class="row mt-5">
@@ -45,7 +40,7 @@
     </li>
     {% endif %}
     <li class="page-item active">
-      <a class="page-link" href="#">{{ users.number }} / {{ users.paginator.num_pages }}</a>
+      <a class="page-link" href="#">{{ users.number}} / {{ users.paginator.num_pages }}</a>
     </li>
     {% if users.has_next %}
     <li class="page-item">
@@ -58,6 +53,5 @@
   </ul>
 </nav>
   </div>
-</body>
 
-</html>
+{% endblock %}
