@@ -72,7 +72,7 @@ def logout_view(request):
 def user_list_view(request):
     # TODO: 7. /users 에 user 목록을 출력해주세요
     # TODO: 9. user 목록은 pagination이 되게 해주세요
-    page = int(request.GET.get("p", 1))
+    page = int(request.GET.get("page", 1))
     users = User.objects.all().order_by("-id")
     paginator = Paginator(users, 10)
     users = paginator.get_page(page)
