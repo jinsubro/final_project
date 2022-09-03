@@ -44,3 +44,4 @@ def user_list_view(request):
     # TODO: 7. /users 에 user 목록을 출력해주세요
     # TODO: 9. user 목록은 pagination이 되게 해주세요
     return render(request, "users.html", {"users": users})
+ddd
