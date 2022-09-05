@@ -29,7 +29,6 @@ def register_view(request):
 
 
 def login_view(request):
-    print(f"[test] login_view starts") # test code
     is_ok = False
     if request.method == "POST":
         print(f"[test] POST")
@@ -37,8 +36,8 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password")
-            print(f"[test] name: {username} / pw:{raw_password}")
-            user = authenticate(username=username,password=raw_password) # 대체 필요
+            #user = authenticate(username=username,password=raw_password) # 대체 필요
+            user = User.objects.get(username=username)
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('/')
@@ -68,12 +67,15 @@ def logout_view(request):
 
 
 # TODO: 8. user 목록은 로그인 유저만 접근 가능하게 해주세요
-@login_required
 def user_list_view(request):
     # TODO: 7. /users 에 user 목록을 출력해주세요
     # TODO: 9. user 목록은 pagination이 되게 해주세요
-    page = int(request.GET.get("page", 1))
-    users = User.objects.all().order_by("-id")
-    paginator = Paginator(users, 10)
-    users = paginator.get_page(page)
-    return render(request, "users.html", {"users": users})
+    cur_user = request.user
+    if cur_user.is_authenticated:
+        page = int(request.GET.get("page", 1))
+        users = User.objects.all().order_by("-id")
+        paginator = Paginator(users, 10)
+        users = paginator.get_page(page)
+        return render(request, "users.html", {"users": users})
+    else:
+        return HttpResponseRedirect("/login")

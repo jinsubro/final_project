@@ -43,6 +43,7 @@ class LoginForm(forms.Form):
             "class": "form-control", 
             "placeholder": "id를 입력해주세요."
             }),
+        label="유저명"
     )
     password = forms.CharField(
         max_length=30,
@@ -51,5 +52,6 @@ class LoginForm(forms.Form):
             "class": "form-control", 
             "placeholder": "password를 입력해주세요."
             }),
+        label="비밀번호"
     )
     # TODO: 2. login 할 때 form을 활용해주세요
